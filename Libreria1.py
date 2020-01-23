@@ -34,19 +34,41 @@ def Polar (a):
 def Fase (a):
     c = Polar (a)
     return c[1]
+def sumaVect(a,b):
+    matriz = []
+    i = 0
+    for i in range(len(a)):
+        matriz = matriz + [Suma (a[i],b[i])]
+    return matriz
+def inversaVect(a):
+    matriz = []
+    i = 0
+    s = (-1,0)
+    for i in range(len(a)):
+        matriz = matriz + [multiplicacion (a[i], s)]
+    return matriz
+def productoEscalarV(a, b):
+    matriz = []
+    i = 0
+    for i in range(len(a)):
+        matriz = matriz + [multiplicacion (a[i], b)]
+    return matriz
+def sumaMatrix(a,b):
+    
 
-d =(-2,1)
-v =(1,2)
-jo = (1,-1)
-k = Suma(d,v)
-#prettyPrinting(k)
-#prettyPrinting(Suma(k,v))
-l = multiplicacion (d, v)
-#prettyPrinting(l)
-m = div (d, v)
-j = conj(v)
-r = modulo (jo)
-prettyPrinting(j)
-print (modulo (jo))
 
+w = [(7,3),(4,2)]
+l = [(1,2),(3,5)]
+
+d =(3,4)
+v =(-1,0)
+print(productoEscalarV(w,v))
+#prettyPrinting(multiplicacion (d,v))
+c =(-1,0)
+g = (-1,0)
+#prettyPrinting(multiplicacion (c,g))
+#x = (0,-1)
+#y = (1,0)
+#prettyPrinting(multiplicacion (x,y))
+#prettyPrinting(Suma (multiplicacion (d,v),multiplicacion (c,g)))
 print(Fase (v))
