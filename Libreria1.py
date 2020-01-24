@@ -53,7 +53,19 @@ def productoEscalarV(a, b):
     for i in range(len(a)):
         matriz = matriz + [multiplicacion (a[i], b)]
     return matriz
-def sumaMatrix(a,b):
+def sumaMatrix (a, b):
+    i = 0
+    j = 0
+    n,m = len(a),len(a[0])
+    N,M = len(b),len(b[0])
+    
+    if n == N and m == M:
+        c = [[0 for j in range (m) ]for i in range (n)]
+        for i in range (n):
+            for j in range (m):
+                c[i][j] = Suma (a[i][j], b[i][j])
+    return c
+
     
 
 
