@@ -30,17 +30,21 @@ def conj (a):
 def modulo (a):
     rad = (a[0]**2) + (a[1]**2)
     mod = math.sqrt (rad)
+    mod = round (mod, 2)
     return mod
 
 def Polar (a):
     f = (a[0]**2) + (a[1]**2)
     rho = math.sqrt (f)
     d = a[1] / a[0]
-    Theta = math.atan (d)
+    Theta = math.atan2 (d)
+    Theta = round (Theta,2)
+    rho = round (rho ,2)
     return (rho, Theta)
 
 def Fase (a):
     c = Polar (a)
+    c = round (c,2)
     return c[1]
 
 def sumaVect(a,b):
@@ -122,8 +126,37 @@ def matrixAdj (a):
     c = matrixTrans (matrixConj (a))
     return c
 
+def multiMatrix (a, b):
+    n,m = len(a),len(a[0])
+    N,M = len(b),len(b[0])
+    if m == N :
+        c = [[0 for j in range (m) ]for i in range (n)]
+        for i in range (n):
+                for j in range (m):
+                    c[i][j] = 
+        return c
 
-mat1 = [[(7,3),(4,2)], [(6,1),(5,2)]]
+def ProductInt (a, b):
+    Mat1 = matrixAdj (a)
+    
+    return
+
+def Accion (a, b):
+    Vec = []
+    Aux =[]
+    n,m = len(a),len(a[0])
+    B = len (b)
+    if B == m:
+         for i in range (n):
+            for j in range (m):
+                p = multiplicacion (a[i][j], b[j])
+                Aux = Aux +[p]
+            x = Suma (Aux[0], Aux[1])
+            x
+    return Vec
+
+
+'''mat1 = [[(7,3),(4,2)], [(6,1),(5,2)]]
 w = [[(7,3),(4,2)], [(6,1),(5,2)]]
 l = [(1,2),(3,5)]
 d =(3,4)
@@ -131,11 +164,16 @@ d =(3,4)
 v =(-1,0)
 print(matrixAdj(w))
 #prettyPrinting(multiplicacion (d,v))
-c =(-1,0)
-g = (-1,0)
 #prettyPrinting(multiplicacion (c,g))
 #x = (0,-1)
 #y = (1,0)
 #prettyPrinting(multiplicacion (x,y))
 #prettyPrinting(Suma (multiplicacion (d,v),multiplicacion (c,g)))
-#print(Fase (v))
+#print(Fase (v))'''
+c = multiplicacion((7.7,-7.8),(7.7,7.8))
+g = multiplicacion((3.8,4.6),(3.8,-4.6))
+prettyPrinting(c)
+prettyPrinting(g)
+prettyPrinting(Suma (c,g))
+#prettyPrinting(multiplicacion((0,2),(0,1)))
+#print (math.sqrt (105.58))
