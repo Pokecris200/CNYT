@@ -24,10 +24,10 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(div (a, b), (0,1))
     def testModulo(self):
         a = (1, -1)
-        self.assertEqual(modulo (a), 1.4142)
+        self.assertEqual(modulo (a), 1.41)
     def testPolar(self):
         a = (1,1)
-        self.assertEqual(Polar (a), (1.4142,0.78))
+        self.assertEqual(Polar (a), (1.41,0.78))
     def testFase (self):
         a = (1,1)
         self.assertEqual(Fase (a), 0.78)
