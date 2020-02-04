@@ -128,13 +128,20 @@ def matrixAdj (a):
 
 def multiMatrix (a, b):
     n,m = len(a),len(a[0])
-    N,M = len(b),len(b[0])
+    N = len(b)
+    Aux =[]
+    acum = []
+    c = [[0 for j in range (m) ]for i in range (n)]
     if m == N :
-        c = [[0 for j in range (m) ]for i in range (n)]
         for i in range (n):
-                for j in range (m):
-                    c[i][j] = 
-        return c
+            for j in range (m):
+                p = multiplicacion (a[i][j], b[j])
+                Aux = Aux +[p]
+                print(Aux)
+                for k in range (len (Aux)-1):
+                    c[i][j]= Suma (Aux[k], Aux [k+1])
+                    print (c)
+    return c
 
 def ProductInt (a, b):
     Mat1 = matrixAdj (a)
@@ -155,10 +162,12 @@ def Accion (a, b):
             x
     return Vec
 
-
-'''mat1 = [[(7,3),(4,2)], [(6,1),(5,2)]]
-w = [[(7,3),(4,2)], [(6,1),(5,2)]]
+#prettyPrinting(multiplicacion ((6,1),(1,2)))
+#prettyPrinting(multiplicacion ((5,2),(3,5)))
+#prettyPrinting(Suma (multiplicacion ((6,1),(1,2)), multiplicacion ((5,2),(3,5))))
 l = [(1,2),(3,5)]
+mat1 = [[(7,3),(4,2)], [(6,1),(5,2)]]
+'''w = [[(7,3),(4,2)], [(6,1),(5,2)]]
 d =(3,4)
 #print(sumaMatrix(w,mat1))
 v =(-1,0)
@@ -167,13 +176,6 @@ print(matrixAdj(w))
 #prettyPrinting(multiplicacion (c,g))
 #x = (0,-1)
 #y = (1,0)
-#prettyPrinting(multiplicacion (x,y))
 #prettyPrinting(Suma (multiplicacion (d,v),multiplicacion (c,g)))
 #print(Fase (v))'''
-c = multiplicacion((7.7,-7.8),(7.7,7.8))
-g = multiplicacion((3.8,4.6),(3.8,-4.6))
-prettyPrinting(c)
-prettyPrinting(g)
-prettyPrinting(Suma (c,g))
-#prettyPrinting(multiplicacion((0,2),(0,1)))
-#print (math.sqrt (105.58))
+print(multiMatrix(mat1, l))
