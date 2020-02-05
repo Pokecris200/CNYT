@@ -128,20 +128,26 @@ def matrixAdj (a):
 
 def multiMatrix (a, b):
     n,m = len(a),len(a[0])
-    N = len(b)
+    N,M = len(b), len(b[0])
+    b = matrixTrans(b)
     Aux =[]
     acum = []
+    contador = 0
     c = [[0 for j in range (m) ]for i in range (n)]
     if m == N :
-        for i in range (n):
-            for j in range (m):
-                p = multiplicacion (a[i][j], b[j])
-                Aux = Aux +[p]
-                print(Aux)
-                for k in range (len (Aux)-1):
-                    c[i][j]= Suma (Aux[k], Aux [k+1])
-                    print (c)
-    return c
+        for k in range (N):
+            for i in range (n):
+                for j in range (m):
+                    p = multiplicacion (a[k][j], b[i][j])
+                    Aux = Aux +[p]
+                    print(Aux)
+            for i in range (n):
+                for j in range (m):
+                    while contador <= len(Aux)-1 :
+                        acum = acum + [Suma (Aux[contador], Aux [contador+1])]
+                        contador = contador + 2
+                    
+    return acum
 
 def ProductInt (a, b):
     Mat1 = matrixAdj (a)
@@ -162,9 +168,9 @@ def Accion (a, b):
             x
     return Vec
 
-#prettyPrinting(multiplicacion ((6,1),(1,2)))
-#prettyPrinting(multiplicacion ((5,2),(3,5)))
-#prettyPrinting(Suma (multiplicacion ((6,1),(1,2)), multiplicacion ((5,2),(3,5))))
+'''prettyPrinting(multiplicacion ((7,3),(7,3)))
+prettyPrinting(multiplicacion ((4,2),(4,2)))
+prettyPrinting(Suma (multiplicacion ((7,3),(7,3)), multiplicacion ((4,2),(4,2))))'''
 l = [(1,2),(3,5)]
 mat1 = [[(7,3),(4,2)], [(6,1),(5,2)]]
 '''w = [[(7,3),(4,2)], [(6,1),(5,2)]]
@@ -178,4 +184,4 @@ print(matrixAdj(w))
 #y = (1,0)
 #prettyPrinting(Suma (multiplicacion (d,v),multiplicacion (c,g)))
 #print(Fase (v))'''
-print(multiMatrix(mat1, l))
+print(multiMatrix(mat1, mat1))
