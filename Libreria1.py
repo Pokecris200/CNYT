@@ -129,59 +129,102 @@ def matrixAdj (a):
 def multiMatrix (a, b):
     n,m = len(a),len(a[0])
     N,M = len(b), len(b[0])
-    b = matrixTrans(b)
-    Aux =[]
-    acum = []
-    contador = 0
-    c = [[0 for j in range (m) ]for i in range (n)]
+    c = [[(0,0) for j in range (m) ]for i in range (n)]
     if m == N :
-        for k in range (N):
-            for i in range (n):
-                for j in range (m):
-                    p = multiplicacion (a[k][j], b[i][j])
-                    Aux = Aux +[p]
-                    print(Aux)
-            for i in range (n):
-                for j in range (m):
-                    while contador <= len(Aux)-1 :
-                        acum = acum + [Suma (Aux[contador], Aux [contador+1])]
-                        contador = contador + 2
-                    
-    return acum
+        for i in range (n):
+            for j in range (M):
+                for k in range (N):
+                    p = multiplicacion (a[i][k], b[k][j])
+                    q = c [i][j]
+                    c[i][j] = Suma (p, q)
 
-def ProductInt (a, b):
-    Mat1 = matrixAdj (a)
-    
-    return
+    return c
 
 def Accion (a, b):
-    Vec = []
-    Aux =[]
     n,m = len(a),len(a[0])
     B = len (b)
+    c = []
     if B == m:
-         for i in range (n):
+        S = (0,0)
+        for i in range (n):
             for j in range (m):
                 p = multiplicacion (a[i][j], b[j])
-                Aux = Aux +[p]
-            x = Suma (Aux[0], Aux[1])
-            x
-    return Vec
+                S = Suma (S, p)
+            c = c + [S]
+            S = (0,0) 
+    return c
 
-'''prettyPrinting(multiplicacion ((7,3),(7,3)))
-prettyPrinting(multiplicacion ((4,2),(4,2)))
-prettyPrinting(Suma (multiplicacion ((7,3),(7,3)), multiplicacion ((4,2),(4,2))))'''
-l = [(1,2),(3,5)]
-mat1 = [[(7,3),(4,2)], [(6,1),(5,2)]]
-'''w = [[(7,3),(4,2)], [(6,1),(5,2)]]
-d =(3,4)
-#print(sumaMatrix(w,mat1))
-v =(-1,0)
-print(matrixAdj(w))
-#prettyPrinting(multiplicacion (d,v))
-#prettyPrinting(multiplicacion (c,g))
-#x = (0,-1)
-#y = (1,0)
-#prettyPrinting(Suma (multiplicacion (d,v),multiplicacion (c,g)))
-#print(Fase (v))'''
-print(multiMatrix(mat1, mat1))
+def ProductIntVec (a, b):
+    c = (0,0)
+    for i in range (len(a)):
+        n = multiplicacion(conj(a[i]), b[i])
+        c = Suma (c, n)     
+    return c
+
+def norma (a):
+    e = ProductIntVec(a, a)
+    c = (e[0])**(1/2)
+    c = round(c, 2)
+    return c
+
+def distancia (a, b):
+    f = inversaVect (b)
+    d = sumaVect(a,f)
+    c = ProductIntVec(d,d)
+    Res = (c[0]) ** (1/2)
+    Res = round (Res, 2)
+    return Res
+def ID (f, c):
+    c =[[(0,0)]*f for i in range(c)]
+    for i in range(f):
+        for j in range(c):
+            if i == j:
+                c[i][j]= ((2/2),0)
+    return c
+    
+def Uni (a):
+    p = multiMatrix(matrixAdj(a), a)
+    i = ID(len(a),len(a[0]))
+    if p == i :
+        return True
+    else:
+        return False
+
+def Herm (a):
+    c = matrixAdj (a)
+    if a == c:
+        return True
+    else:
+        return False
+
+def Tensor (a, b):
+    r = []
+    m = 0
+    n = 0
+    while (m < ((len(a)-1)*2)):
+        f1 = a[m]
+        f2 = b[n]
+        aux = []
+        for i in f1:
+            for j in f2:
+                aux = aux + [multiplicacion (i, j)]
+        m = m + 1
+        f2 = b[n]
+        r = r + [aux]
+        aux = []
+        for i in f1:
+            for j in f2:
+                aux = aux + [multiplicacion (i, j)]
+        m = m + 1
+        n = n - 1
+        r = r + [aux]
+    return r
+
+X = [[(0,0),(1,0)],[(1,0),(0,0)]]
+H = [[((1)/((2)**(1/2)),0),((1)/((2)**(1/2)),0)],[((1)/((2)**(1/2)),0),((1)/((2)**(1/2)),0)]]
+I00 = [[(1,0)],[(0,0)],[(0,0)],[(0,0)]]
+M1 = Tensor (X,H)
+M2 = Tensor (H, H)
+print(M1)
+CASI = multiMatrix (M1, M2)
+print = (multiMatrix(CASI, I00))
