@@ -37,14 +37,13 @@ def Polar (a):
     f = (a[0]**2) + (a[1]**2)
     rho = math.sqrt (f)
     d = a[1] / a[0]
-    Theta = math.atan2 (d)
+    Theta = math.atan (d)
     Theta = round (Theta,2)
     rho = round (rho ,2)
     return (rho, Theta)
 
 def Fase (a):
     c = Polar (a)
-    c = round (c,2)
     return c[1]
 
 def sumaVect(a,b):
@@ -219,12 +218,3 @@ def Tensor (a, b):
         n = n - 1
         r = r + [aux]
     return r
-
-X = [[(0,0),(1,0)],[(1,0),(0,0)]]
-H = [[((1)/((2)**(1/2)),0),((1)/((2)**(1/2)),0)],[((1)/((2)**(1/2)),0),((1)/((2)**(1/2)),0)]]
-I00 = [[(1,0)],[(0,0)],[(0,0)],[(0,0)]]
-M1 = Tensor (X,H)
-M2 = Tensor (H, H)
-print(M1)
-CASI = multiMatrix (M1, M2)
-print = (multiMatrix(CASI, I00))
