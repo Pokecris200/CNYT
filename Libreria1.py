@@ -173,10 +173,10 @@ def distancia (a, b):
     Res = (c[0]) ** (1/2)
     Res = round (Res, 2)
     return Res
-def ID (f, c):
-    c =[[(0,0)]*f for i in range(c)]
-    for i in range(f):
-        for j in range(c):
+def ID (m, n):
+    c = [[(0,0) for j in range (m) ]for i in range (n)]
+    for i in range (n):
+        for j in range (m):
             if i == j:
                 c[i][j]= ((2/2),0)
     return c
